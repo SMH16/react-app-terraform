@@ -11,7 +11,16 @@ variable "github_repo_url" {
 }
 
 variable "instance_type" {
-  description = "EC2 instance type"
-  type        = string
-  default     = "t2.micro"
+  type    = string
+  default = "t3.micro"
+}
+
+variable "ssh_public_key_path" {
+  type    = string
+  default = "~/.ssh/id_rsa.pub"
+}
+
+variable "github_deploy_user" {
+  type    = string
+  default = "ubuntu"
 }
