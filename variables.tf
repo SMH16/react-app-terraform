@@ -12,7 +12,7 @@ variable "github_repo_url" {
 
 variable "instance_type" {
   type    = string
-  default = "t3.micro"
+  default = "t2.micro"
 }
 
 variable "ssh_public_key_path" {
