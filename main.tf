@@ -51,8 +51,11 @@ data "aws_vpc" "default" {
   default = true
 }
 
-data "aws_subnet_ids" "default" {
-  vpc_id = data.aws_vpc.default.id
+data "aws_subnets" "default" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default.id]
+  }
 }
 
 resource "aws_instance" "react_ec2" {
@@ -60,7 +63,7 @@ resource "aws_instance" "react_ec2" {
   instance_type          = var.instance_type
   key_name               = aws_key_pair.deployer.key_name
   vpc_security_group_ids = [aws_security_group.react_sg.id]
-  subnet_id              = data.aws_subnet_ids.default.ids[0]
+  subnet_id              = data.aws_subnets.default.ids[0]
   associate_public_ip_address = true
   tags = {
     Name = "react-ec2"
