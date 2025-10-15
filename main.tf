@@ -34,7 +34,7 @@ resource "aws_security_group" "web_sg" {
 
 # EC2 instance
 resource "aws_instance" "react_app" {
-  ami           = data.aws_ami.oct15_ami
+  ami           = data.aws_ami.oct15_ami.id
   instance_type = var.instance_type
   security_groups = [aws_security_group.web_sg.name]
 
